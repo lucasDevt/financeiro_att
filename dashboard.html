@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FinanceFlow</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/novo-projeto.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar">
+
+        <!-- LOGO -->
+
+        <div class="sidebar-logo">
+
+            <div class="logo-symbol">
+                <img class="logo" src="assets/logo.png">
+            </div>
+
+            <div class="logo-text">
+
+                <strong>Fintape</strong>
+
+                <span>
+                    Gestão profissional e facilitada
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- MENU -->
+
+        <nav class="sidebar-menu">
+
+
+            <p class="menu-label">
+                PRINCIPAL
+            </p>
+
+
+            <a href="#" class="sidebar-item active">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
+                </svg>
+
+                Dashboard
+
+            </a>
+
+
+
+
+
+            <p class="menu-label second-label">
+                ORGANIZAÇÃO
+            </p>
+
+
+            <a href="#" class="sidebar-item">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-calendar-event" viewBox="0 0 16 16">
+                    <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
+                    <path
+                        d="M3.5 0a.5.5 0 0 0 1 0V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+                </svg>
+
+                Agenda
+
+            </a>
+
+
+            <a href="#" class="sidebar-item">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" />
+                </svg>
+
+                Clientes
+
+            </a>
+
+
+            <a href="#" class="sidebar-item">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-person-workspace" viewBox="0 0 16 16">
+                    <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
+                    <path
+                        d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.4 5.4 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 1 1.5 1.5V3a2 2 0 0 0-2-2z" />
+                </svg>
+
+                Leads
+
+            </a>
+
+            <a href="#" class="sidebar-item">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-card-checklist" viewBox="0 0 16 16">
+                    <path
+                        d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z" />
+                    <path
+                        d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0" />
+                </svg>
+
+                Projetos
+
+            </a>
+
+            <p class="menu-label second-label">
+                FINANCEIRO
+            </p>
+
+            <a href="#" class="sidebar-item">
+
+                <span class="sidebar-icon">
+                    $
+                </span>
+
+                Orçamentos
+
+            </a>
+
+
+
+        </nav>
+
+
+        <!-- PARTE INFERIOR -->
+
+        <div class="sidebar-bottom">
+
+
+            <a href="#" class="sidebar-item">
+
+                <span class="sidebar-icon">
+                    ⚙
+                </span>
+
+                Configurações
+
+            </a>
+
+
+            <div class="sidebar-user">
+
+                <div class="user-avatar">
+                    L
+                </div>
+
+
+                <div class="user-data">
+
+                    <strong>
+                        Lucas
+                    </strong>
+
+                    <span>
+                        Administrador
+                    </span>
+
+                </div>
+
+
+                <span class="user-arrow">
+                    ›
+                </span>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================================
+         CONTEÚDO PRINCIPAL
+    ========================================== -->
+
+    <div class="main-layout">
+
+
+        <!-- =========================================
+             TOPBAR
+        ========================================== -->
+
+        <header class="topbar">
+
+            <div class="container-fluid">
+
+                <div class="d-flex
+                    align-items-center
+                    justify-content-between">
+
+
+                    <!-- LADO ESQUERDO -->
+
+                    <div class="topbar-left">
+
+                        <span class="topbar-label">
+                            PROJETOS
+                        </span>
+
+                        <span class="topbar-divider"></span>
+
+                        <span class="topbar-status">
+
+                            <span></span>
+
+                            Workspace ativo
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- LADO DIREITO -->
+
+                    <div class="top-actions">
+
+                        <button class="btn-new-project" id="btnNovoProjeto" type="button">
+                            + Novo projeto
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================================
+             CABEÇALHO DO BOARD
+        ========================================== -->
+
+        <section class="project-bar">
+
+            <div class="container-fluid">
+
+                <div class="d-flex
+                    justify-content-between
+                    align-items-center">
+
+
+                    <div class="project-info">
+
+                        <div class="project-title">
+
+                            <h1>
+                                Organização financeira
+                            </h1>
+
+                            <button class="favorite">
+                                ☆
+                            </button>
+
+                        </div>
+
+
+                        <p>
+                            Acompanhe seus projetos,
+                            orçamentos e confirmações.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             BOARD
+        ========================================== -->
+
+        <main class="board-wrapper">
+
+            <div class="container-fluid h-100">
+
+                <div class="row board-row">
+
+
+                    <!-- =================================
+                         NÃO APROVADOS
+                    ================================== -->
+
+                    <div class="col-12 col-xl-4 board-column-wrapper">
+
+                        <section class="board-column">
+
+                            <div class="column-header">
+
+                                <div class="column-title">
+
+                                    <span class="column-indicator rejected"></span>
+
+                                    <div>
+
+                                        <h2>
+                                            Não aprovados
+                                        </h2>
+
+                                        <p>
+                                            Projetos que não avançaram
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="column-controls">
+
+                                    <span class="column-count">
+                                        0
+                                    </span>
+
+                                    <button class="column-menu">
+                                        •••
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- CARDS DOS PROJETOS NÃO APROVADOS -->
+
+                            <div class="cards-area" id="naoAprovadosProjetos">
+                            </div>
+
+
+                        </section>
+
+                    </div>
+
+
+
+                    <!-- =================================
+                         AGUARDANDO
+                    ================================== -->
+
+                    <div class="col-12 col-xl-4 board-column-wrapper">
+
+                        <section class="board-column">
+
+                            <div class="column-header">
+
+                                <div class="column-title">
+
+                                    <span class="column-indicator pending"></span>
+
+                                    <div>
+
+                                        <h2>
+                                            Aguardando aprovação
+                                        </h2>
+
+                                        <p>
+                                            Orçamentos enviados
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="column-controls">
+
+                                    <span class="column-count" id="aguardandoCount">
+                                        0
+                                    </span>
+
+                                    <button class="column-menu">
+                                        •••
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- CARDS DOS PROJETOS AGUARDANDO -->
+
+                            <div class="cards-area" id="aguardandoProjetos">
+                            </div>
+
+
+                        </section>
+
+                    </div>
+
+
+
+                    <!-- =================================
+                         CONFIRMADOS
+                    ================================== -->
+
+                    <div class="col-12 col-xl-4 board-column-wrapper">
+
+                        <section class="board-column">
+
+                            <div class="column-header">
+
+                                <div class="column-title">
+
+                                    <span class="column-indicator confirmed"></span>
+
+                                    <div>
+
+                                        <h2>
+                                            Confirmados
+                                        </h2>
+
+                                        <p>
+                                            Projetos aprovados
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="column-controls">
+
+                                    <span class="column-count">
+                                        0
+                                    </span>
+
+                                    <button class="column-menu">
+                                        •••
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- PRÓXIMOS EVENTOS -->
+
+                            <div class="confirmed-section">
+
+                                <div class="section-label">
+
+                                    <span class="section-icon">
+                                        ◷
+                                    </span>
+
+                                    Próximos eventos
+
+                                    <div class="section-line"></div>
+
+                                </div>
+
+
+                                <div class="cards-area" id="confirmadosProjetos">
+
+                                    <!-- Cards futuros -->
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- EVENTOS CONCLUÍDOS -->
+
+                            <div class="confirmed-section completed-section">
+
+                                <div class="section-label">
+
+                                    <span class="section-icon completed">
+                                        ✓
+                                    </span>
+
+                                    Eventos concluídos
+
+                                    <div class="section-line"></div>
+
+                                </div>
+
+
+                                <div class="cards-area">
+
+                                    <!-- Cards futuros -->
+
+                                </div>
+
+                            </div>
+
+
+                        </section>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </main>
+
+
+    </div>
+
+
+    <!-- =========================================
+         SCRIPTS
+    ========================================== -->
+
+    <script type="module" src="js/novo-projeto.js">
+    </script>
+
+    <script type="module" src="js/dashboard.js">
+    </script>
+
+
+</body>
+
+
+
+</html>

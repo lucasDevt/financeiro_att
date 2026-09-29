@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fintape — Entrar</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+    <main class="login-page">
+
+
+        <section class="login-card">
+
+            <div class="login-flipper" id="loginFlipper">
+
+
+                <!-- =================================
+                     FRENTE DO CARD — LOGIN
+                ================================== -->
+
+                <div class="login-face login-front">
+
+
+                    <!-- LOGO -->
+
+                    <div class="login-logo">
+
+                        <div class="logo-symbol">
+                            <img class="logo" src="assets/logo.png">
+                        </div>
+
+                        <div class="logo-text">
+
+                            <strong>
+                                Fintape
+                            </strong>
+
+                            <span>
+                                GESTÃO ECONÔMICA FACILITADA
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- LOGIN -->
+
+                    <div id="telaLogin">
+
+                        <div class="login-header">
+
+                            <h1>
+                                Bem-vindo de volta
+                            </h1>
+
+                            <p>
+                                Entre na sua conta para continuar
+                                gerenciando seus projetos.
+                            </p>
+
+                        </div>
+
+
+                        <form id="formLogin">
+
+
+                            <div class="form-group">
+
+                                <label for="emailLogin">
+                                    E-mail
+                                </label>
+
+                                <input type="email" id="emailLogin" placeholder="seu@email.com" autocomplete="email"
+                                    required>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <div class="password-label">
+
+                                    <label for="senhaLogin">
+                                        Senha
+                                    </label>
+
+                                    <a href="#" id="btnEsqueciSenha">
+                                        Esqueci minha senha
+                                    </a>
+
+                                </div>
+
+
+                                <input type="password" id="senhaLogin" placeholder="Digite sua senha"
+                                    autocomplete="current-password" required>
+
+                            </div>
+
+
+                            <div id="mensagemLogin" class="login-message"></div>
+
+
+                            <button type="submit" class="btn-login" id="btnLogin">
+                                Entrar
+                            </button>
+
+
+                        </form>
+
+
+                        <div class="login-footer">
+
+                            <span>
+                                Ainda não possui uma conta?
+                            </span>
+
+                            <a href="#" id="btnCriarConta">
+                                Criar conta
+                            </a>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================
+                     VERSO DO CARD — CADASTRO
+                ================================== -->
+
+                <div class="login-face login-back">
+
+
+                    <!-- LOGO -->
+
+                    <div class="login-logo">
+
+                        <div class="logo-symbol">
+                            <img class="logo" src="assets/logo.png" alt="logo">
+                        </div>
+
+                        <div class="logo-text">
+
+                            <strong>
+                                Fintape
+                            </strong>
+
+                            <span>
+                                GESTÃO ECONÔMICA FACILITADA
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CADASTRO -->
+
+                    <div id="telaCadastro">
+
+
+                        <div class="login-header">
+
+                            <h1>
+                                Criar sua conta
+                            </h1>
+
+                            <p>
+                                Crie sua conta para começar a
+                                organizar seus projetos.
+                            </p>
+
+                        </div>
+
+
+                        <form id="formCadastro">
+
+
+                            <div class="form-group">
+
+                                <label for="nomeCadastro">
+                                    Nome
+                                </label>
+
+                                <input type="text" id="nomeCadastro" placeholder="Seu nome" autocomplete="name"
+                                    required>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="emailCadastro">
+                                    E-mail
+                                </label>
+
+                                <input type="email" id="emailCadastro" placeholder="seu@email.com" autocomplete="email"
+                                    required>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="senhaCadastro">
+                                    Senha
+                                </label>
+
+                                <input type="password" id="senhaCadastro" placeholder="Mínimo de 6 caracteres"
+                                    autocomplete="new-password" minlength="6" required>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="confirmarSenha">
+                                    Confirmar senha
+                                </label>
+
+                                <input type="password" id="confirmarSenha" placeholder="Digite a senha novamente"
+                                    autocomplete="new-password" minlength="6" required>
+
+                            </div>
+
+
+                            <div id="mensagemCadastro" class="login-message"></div>
+
+
+                            <button type="submit" class="btn-login" id="btnCadastro">
+                                Criar conta
+                            </button>
+
+
+                        </form>
+
+
+                        <div class="login-footer">
+
+                            <span>
+                                Já possui uma conta?
+                            </span>
+
+                            <a href="#" id="btnVoltarLogin">
+                                Entrar
+                            </a>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             DECORAÇÃO
+        ================================== -->
+
+        <div class="login-decoration">
+
+            <span class="decoration-line"></span>
+
+            <p>
+                Seus projetos.<br>
+                Sua organização.<br>
+                <strong>Seu fluxo.</strong>
+            </p>
+
+        </div>
+
+
+    </main>
+
+
+    <script type="module" src="js/auth.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,1165 @@
+/* =========================================================
+   MODAL — NOVO PROJETO
+   Fintape / Spotify Desktop
+========================================================= */
+
+.novo-projeto-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+
+    background: rgba(0, 0, 0, 0.78);
+    backdrop-filter: blur(8px);
+
+    opacity: 0;
+    transition: opacity .2s ease;
+}
+
+.novo-projeto-overlay.ativo {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   MODAL PRINCIPAL
+========================================================= */
+
+.novo-projeto-modal {
+    width: min(1080px, 100%);
+    max-height: 92vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #181818;
+
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 12px;
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, .65);
+
+    overflow: hidden;
+
+    transform: translateY(12px) scale(.985);
+    transition: transform .2s ease;
+}
+
+.novo-projeto-overlay.ativo .novo-projeto-modal {
+    transform: translateY(0) scale(1);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.novo-projeto-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    padding: 25px 28px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, .06);
+}
+
+.novo-projeto-overline {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--accent);
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+.novo-projeto-header h2 {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.novo-projeto-header p {
+    margin: 6px 0 0;
+
+    color: var(--text-light);
+
+    font-size: 11px;
+}
+
+.novo-projeto-fechar {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 50%;
+
+    background: #242424;
+
+    color: #888;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.novo-projeto-fechar:hover {
+    background: #303030;
+    color: #fff;
+}
+
+
+/* =========================================================
+   CONTEÚDO
+========================================================= */
+
+.novo-projeto-content {
+    flex: 1;
+
+    min-height: 0;
+
+    overflow-y: auto;
+
+    padding: 25px 28px 110px;
+}
+
+.novo-projeto-content::-webkit-scrollbar {
+    width: 7px;
+}
+
+.novo-projeto-content::-webkit-scrollbar-thumb {
+    background: #3a3a3a;
+    border-radius: 20px;
+}
+
+
+/* =========================================================
+   INFORMAÇÕES PRINCIPAIS
+========================================================= */
+
+.projeto-topo {
+    display: grid;
+
+    grid-template-columns: 1fr 190px;
+
+    gap: 24px;
+
+    margin-bottom: 24px;
+}
+
+.campo-nome-projeto label,
+.imagem-projeto>label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--text-secondary);
+
+    font-size: 10px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.campo-nome-projeto input {
+    width: 100%;
+    height: 44px;
+
+    padding: 0 13px;
+
+    border: 1px solid rgba(255, 255, 255, .09);
+    border-radius: 7px;
+
+    outline: none;
+
+    background: #242424;
+
+    color: #fff;
+
+    font-family: inherit;
+    font-size: 12px;
+
+    transition: .2s ease;
+}
+
+.campo-nome-projeto input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(30, 215, 96, .08);
+}
+
+.campo-nome-projeto input::placeholder {
+    color: #606060;
+}
+
+
+/* =========================================================
+   UPLOAD DA IMAGEM
+========================================================= */
+
+.upload-imagem {
+    position: relative;
+
+    display: flex;
+
+    width: 190px;
+    height: 105px;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border: 1px dashed #3b3b3b;
+    border-radius: 8px;
+
+    background: #202020;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.upload-imagem:hover {
+    border-color: var(--accent);
+    background: #232323;
+}
+
+#previewImagem {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+
+    color: #888;
+
+    font-size: 10px;
+}
+
+.upload-icon {
+    color: var(--accent);
+
+    font-size: 22px;
+}
+
+#previewImagem small {
+    color: #555;
+
+    font-size: 8px;
+}
+
+#previewImagem img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   SEÇÕES
+========================================================= */
+
+.projeto-secao {
+    margin-bottom: 15px;
+
+    padding: 18px;
+
+    background: #181818;
+
+    border: 1px solid rgba(255, 255, 255, .065);
+    border-radius: 9px;
+
+    transition: border-color .2s ease;
+}
+
+.projeto-secao:hover {
+    border-color: rgba(255, 255, 255, .1);
+}
+
+.secao-header {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 13px;
+}
+
+.secao-header h3 {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.secao-header p {
+    margin: 4px 0 0;
+
+    color: #6f6f6f;
+
+    font-size: 9px;
+}
+
+.secao-acoes {
+    display: flex;
+    gap: 5px;
+}
+
+.secao-acoes button {
+    width: 29px;
+    height: 29px;
+
+    border: 1px solid rgba(255, 255, 255, .07);
+    border-radius: 6px;
+
+    background: #242424;
+
+    color: #777;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.secao-acoes button:hover {
+    background: #303030;
+    color: #fff;
+}
+
+
+/* =========================================================
+   CARDS DOS CAMPOS
+========================================================= */
+
+.campos-container {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(190px, 1fr));
+
+    gap: 8px;
+}
+
+
+/* CARD */
+
+.campo-projeto {
+    position: relative;
+
+    min-height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    padding: 12px;
+
+    background: #242424;
+
+    border: 1px solid rgba(255, 255, 255, .065);
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    transition:
+        background .15s ease,
+        border-color .15s ease,
+        transform .15s ease;
+}
+
+.campo-projeto:hover {
+    background: #2a2a2a;
+
+    border-color: rgba(255, 255, 255, .13);
+
+    transform: translateY(-1px);
+}
+
+
+/* CARD SELECIONADO */
+
+.campo-projeto.selecionado {
+    background:
+        rgba(30, 215, 96, .075);
+
+    border-color:
+        rgba(30, 215, 96, .45);
+
+    box-shadow:
+        inset 3px 0 0 var(--accent);
+}
+
+.campo-projeto.selecionado:hover {
+    background:
+        rgba(30, 215, 96, .10);
+}
+
+
+/* INFORMAÇÕES */
+
+.campo-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.campo-titulo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+.campo-titulo>span {
+    overflow: hidden;
+
+    color: #e6e6e6;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.campo-valor {
+    display: block;
+
+    margin-top: 5px;
+
+    color: var(--accent);
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   ÍCONE DE SELEÇÃO
+========================================================= */
+
+.campo-selecao-indicador {
+    width: 17px;
+    height: 17px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #555;
+    border-radius: 50%;
+
+    color: transparent;
+
+    font-size: 9px;
+    font-weight: 900;
+
+    transition: .15s ease;
+}
+
+.campo-projeto.selecionado .campo-selecao-indicador {
+    border-color: var(--accent);
+
+    background: var(--accent);
+
+    color: #000;
+}
+
+
+/* =========================================================
+   MENU DO CAMPO
+========================================================= */
+
+.menu-campo {
+    width: 22px;
+    height: 22px;
+
+    flex-shrink: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #666;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    border-radius: 4px;
+
+    transition: .15s ease;
+}
+
+.menu-campo:hover {
+    background: #333;
+    color: #fff;
+}
+
+
+/* =========================================================
+   ADICIONAR CAMPO
+========================================================= */
+
+.botao-adicionar-campo {
+    margin-top: 10px;
+
+    padding: 7px 10px;
+
+    border: 1px dashed #383838;
+    border-radius: 6px;
+
+    background: transparent;
+
+    color: #777;
+
+    font-family: inherit;
+    font-size: 10px;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.botao-adicionar-campo:hover {
+    border-color: var(--accent);
+
+    color: var(--accent);
+
+    background:
+        rgba(30, 215, 96, .035);
+}
+
+
+/* =========================================================
+   ADICIONAR SEÇÃO
+========================================================= */
+
+.botao-adicionar-secao {
+    width: 100%;
+    height: 46px;
+
+    border: 1px dashed #383838;
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: #777;
+
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.botao-adicionar-secao:hover {
+    border-color: var(--accent);
+
+    background:
+        rgba(30, 215, 96, .035);
+
+    color: var(--accent);
+}
+
+
+/* =========================================================
+   MENU DROPDOWN
+========================================================= */
+
+.menu-campo-dropdown {
+    position: fixed;
+
+    z-index: 10010;
+
+    width: 155px;
+
+    padding: 5px;
+
+    background: #242424;
+
+    border:
+        1px solid rgba(255, 255, 255, .09);
+
+    border-radius: 7px;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, .5);
+}
+
+.menu-campo-dropdown button {
+    width: 100%;
+
+    padding: 9px;
+
+    border: 0;
+    border-radius: 5px;
+
+    background: transparent;
+
+    color: #aaa;
+
+    text-align: left;
+
+    font-family: inherit;
+    font-size: 10px;
+
+    cursor: pointer;
+}
+
+.menu-campo-dropdown button:hover {
+    background: #303030;
+    color: #fff;
+}
+
+
+/* =========================================================
+   FOOTER FIXO
+========================================================= */
+
+.novo-projeto-footer {
+    position: absolute;
+
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    min-height: 76px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 12px 28px;
+
+    background:
+        rgba(18, 18, 18, .96);
+
+    border-top:
+        1px solid rgba(255, 255, 255, .07);
+
+    backdrop-filter: blur(12px);
+}
+
+
+/* ORÇAMENTO */
+
+.orcamento-container span {
+    display: block;
+
+    color: #777;
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.orcamento-container strong {
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--accent);
+
+    font-size: 21px;
+    font-weight: 800;
+
+    letter-spacing: -.5px;
+}
+
+
+/* AÇÕES */
+
+.acoes-projeto {
+    display: flex;
+
+    gap: 8px;
+}
+
+.botao-cancelar,
+.botao-criar {
+    height: 38px;
+
+    padding: 0 16px;
+
+    border-radius: 500px;
+
+    font-family: inherit;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.botao-cancelar {
+    border:
+        1px solid #353535;
+
+    background: #242424;
+
+    color: #aaa;
+}
+
+.botao-cancelar:hover {
+    background: #2d2d2d;
+    color: #fff;
+}
+
+.botao-criar {
+    border: 0;
+
+    background: var(--accent);
+
+    color: #000;
+}
+
+.botao-criar:hover {
+    background: #1fdf63;
+
+    transform: scale(1.02);
+}
+
+.botao-criar:disabled {
+    opacity: .5;
+
+    cursor: wait;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   MODAL SECUNDÁRIO
+   ADICIONAR / EDITAR SEÇÃO OU CAMPO
+========================================================= */
+
+.formulario-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 11000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, .68);
+
+    backdrop-filter: blur(6px);
+
+    opacity: 0;
+
+    transition: opacity .18s ease;
+}
+
+.formulario-overlay.ativo {
+    opacity: 1;
+}
+
+
+.formulario-modal {
+    width: min(460px, 100%);
+
+    padding: 25px;
+
+    background: #181818;
+
+    border:
+        1px solid rgba(255, 255, 255, .09);
+
+    border-radius: 11px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, .65);
+
+    transform: translateY(10px) scale(.98);
+
+    transition: transform .18s ease;
+}
+
+.formulario-overlay.ativo .formulario-modal {
+    transform: translateY(0) scale(1);
+}
+
+
+/* HEADER */
+
+.formulario-modal-header {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    margin-bottom: 22px;
+}
+
+.formulario-modal-header>div {
+    flex: 1;
+}
+
+.formulario-modal-kicker {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--accent);
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 1.3px;
+}
+
+.formulario-modal-header h3 {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.formulario-modal-header p {
+    margin: 5px 0 0;
+
+    color: #6f6f6f;
+
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+
+/* FECHAR */
+
+.formulario-fechar {
+    width: 29px;
+    height: 29px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: #242424;
+
+    color: #777;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.formulario-fechar:hover {
+    color: #fff;
+    background: #303030;
+}
+
+
+/* =========================================================
+   FORMULÁRIO
+========================================================= */
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #aaa;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    height: 42px;
+
+    padding: 0 12px;
+
+    border:
+        1px solid rgba(255, 255, 255, .08);
+
+    border-radius: 7px;
+
+    outline: none;
+
+    background: #242424;
+
+    color: #fff;
+
+    font-family: inherit;
+    font-size: 11px;
+
+    transition: .2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--accent);
+
+    box-shadow:
+        0 0 0 2px rgba(30, 215, 96, .07);
+}
+
+.form-group input::placeholder {
+    color: #5e5e5e;
+}
+
+
+/* =========================================================
+   VALOR
+========================================================= */
+
+.valor-input-wrapper {
+    position: relative;
+}
+
+.valor-prefixo {
+    position: absolute;
+
+    left: 12px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: var(--accent);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    pointer-events: none;
+}
+
+.valor-input-wrapper input {
+    padding-left: 37px;
+
+    color: var(--accent);
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   TIPOS
+========================================================= */
+
+.tipo-opcoes {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 7px;
+}
+
+.tipo-opcao {
+    position: relative;
+
+    min-height: 62px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+
+    padding: 8px;
+
+    border:
+        1px solid #333;
+
+    border-radius: 7px;
+
+    background: #202020;
+
+    color: #777;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    transition: .18s ease;
+}
+
+.tipo-opcao:hover {
+    background: #292929;
+
+    color: #aaa;
+}
+
+.tipo-opcao.ativo {
+    border-color:
+        rgba(30, 215, 96, .55);
+
+    background:
+        rgba(30, 215, 96, .08);
+
+    color:
+        var(--accent);
+}
+
+.tipo-opcao strong {
+    font-size: 10px;
+}
+
+.tipo-opcao small {
+    color: #606060;
+
+    font-size: 8px;
+}
+
+.tipo-opcao.ativo small {
+    color: #6fa77f;
+}
+
+
+/* =========================================================
+   FOOTER DO FORMULÁRIO
+========================================================= */
+
+.formulario-acoes {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 8px;
+
+    margin-top: 22px;
+
+    padding-top: 17px;
+
+    border-top:
+        1px solid rgba(255, 255, 255, .06);
+}
+
+.formulario-btn {
+    height: 37px;
+
+    padding: 0 15px;
+
+    border-radius: 500px;
+
+    font-family: inherit;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.formulario-btn.cancelar {
+    border:
+        1px solid #353535;
+
+    background: #242424;
+
+    color: #999;
+}
+
+.formulario-btn.salvar {
+    border: 0;
+
+    background: var(--accent);
+
+    color: #000;
+}
+
+.formulario-btn.salvar:hover {
+    background: #1fdf63;
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .novo-projeto-overlay {
+        padding: 0;
+    }
+
+    .novo-projeto-modal {
+        width: 100%;
+        height: 100%;
+        max-height: 100vh;
+
+        border-radius: 0;
+    }
+
+    .novo-projeto-header,
+    .novo-projeto-content {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .projeto-topo {
+        grid-template-columns: 1fr;
+    }
+
+    .upload-imagem {
+        width: 100%;
+    }
+
+    .novo-projeto-footer {
+        padding: 12px 18px;
+    }
+
+    .tipo-opcoes {
+        grid-template-columns: 1fr;
+    }
+}
