@@ -6,6 +6,7 @@ import {
   ref,
   onValue,
   update,
+  remove,
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
 
 import { editarProjeto } from "./novo-projeto.js";
@@ -14,7 +15,7 @@ import { editarProjeto } from "./novo-projeto.js";
 // CONFIGURAÇÕES
 // =========================================
 
-let projetosAtuais = []
+let projetosAtuais = [];
 
 const STATUS = {
   AGUARDANDO: "aguardando",
@@ -58,18 +59,21 @@ function carregarProjetos() {
 
   onValue(projetosRef, (snapshot) => {
     if (!snapshot.exists()) {
+      projetosAtuais = [];
+
       limparDashboard();
+
       return;
     }
 
     const dados = snapshot.val();
 
-    const projetos = Object.entries(dados).map(([chave, projeto]) => ({
+    projetosAtuais = Object.entries(dados).map(([chave, projeto]) => ({
       ...projeto,
       id: projeto.id || chave,
     }));
 
-    renderizarProjetos(projetos);
+    renderizarProjetos(projetosAtuais);
   });
 }
 
@@ -164,76 +168,123 @@ function criarCardProjeto(projeto, status) {
 
   card.innerHTML = `
 
-        ${imagem}
+    ${imagem}
 
-        <div class="dashboard-card-content">
+    <div class="dashboard-card-content">
 
-            <div class="dashboard-card-header">
+      <div class="dashboard-card-header">
 
-                <div>
+        <div>
 
-                    <h3>
-                        ${escapeHTML(projeto.nome || "Projeto sem nome")}
-                    </h3>
+          <h3>
+            ${escapeHTML(projeto.nome || "Projeto sem nome")}
+          </h3>
 
-                    <span
-                        class="dashboard-card-status status-${status}"
-                    >
-                        ${textoStatus(status)}
-                    </span>
-
-                </div>
-
-
-                <button
-                    class="dashboard-card-more"
-                    type="button"
-                    data-action = "editar"
-                    data-id = "${escapeHTML(projeto.id)}"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
-  <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
-</svg>
-                </button>
-
-            </div>
-
-
-            <div class="dashboard-card-details">
-
-                <div class="dashboard-detail">
-
-                    <span>
-                        ORÇAMENTO
-                    </span>
-
-                    <strong>
-                        ${formatarMoeda(projeto.orcamento)}
-                    </strong>
-
-                </div>
-
-
-                <div class="dashboard-detail">
-
-                    <span>
-                        CRIADO EM
-                    </span>
-
-                    <strong>
-                        ${formatarData(projeto.criadoEm)}
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-            ${botoes}
+          <span
+            class="dashboard-card-status status-${status}"
+          >
+            ${textoStatus(status)}
+          </span>
 
         </div>
 
-    `;
+
+        <div class="dashboard-card-menu">
+
+          <button
+            class="dashboard-card-more"
+            type="button"
+            aria-label="Mais opções"
+          >
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-three-dots"
+              viewBox="0 0 16 16"
+            >
+              <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
+            </svg>
+
+          </button>
+
+
+          <div class="dashboard-card-dropdown">
+
+            <button
+              type="button"
+              data-action="editar"
+              data-id="${escapeHTML(projeto.id)}"
+            >
+
+              <span>✏️</span>
+
+              <span>
+                Editar
+              </span>
+
+            </button>
+
+
+            <button
+              type="button"
+              class="dashboard-delete-option"
+              data-action="apagar"
+              data-id="${escapeHTML(projeto.id)}"
+            >
+
+              <span>🗑️</span>
+
+              <span>
+                Apagar
+              </span>
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="dashboard-card-details">
+
+        <div class="dashboard-detail">
+
+          <span>
+            ORÇAMENTO
+          </span>
+
+          <strong>
+            ${formatarMoeda(projeto.orcamento)}
+          </strong>
+
+        </div>
+
+
+        <div class="dashboard-detail">
+
+          <span>
+            CRIADO EM
+          </span>
+
+          <strong>
+            ${formatarData(projeto.criadoEm)}
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      ${botoes}
+
+    </div>
+
+  `;
 
   adicionarEventos(card);
 
@@ -248,29 +299,34 @@ function criarImagemProjeto(projeto) {
   if (projeto.imagem) {
     return `
 
-            <div class="dashboard-card-image">
+      <div class="dashboard-card-image">
 
-                <img
-                    src="${escapeHTML(projeto.imagem)}"
-                    alt=""
-                >
+        <img
+          src="${escapeHTML(projeto.imagem)}"
+          alt=""
+        >
 
-            </div>
+      </div>
 
-        `;
+    `;
   }
 
   return `
 
-        <div class="dashboard-card-image dashboard-card-placeholder">
+    <div
+      class="
+        dashboard-card-image
+        dashboard-card-placeholder
+      "
+    >
 
-            <span>
-                ◈
-            </span>
+      <span>
+        ◈
+      </span>
 
-        </div>
+    </div>
 
-    `;
+  `;
 }
 
 // =========================================
@@ -281,46 +337,55 @@ function criarBotoesProjeto(projeto, status) {
   if (status === STATUS.AGUARDANDO) {
     return `
 
-            <div class="dashboard-card-actions">
+      <div class="dashboard-card-actions">
 
-                <button
-                    class="dashboard-btn dashboard-btn-reject"
-                    data-action="rejeitar"
-                    data-id="${escapeHTML(projeto.id)}"
-                >
-                    Não aprovar
-                </button>
+        <button
+          class="
+            dashboard-btn
+            dashboard-btn-reject
+          "
+          data-action="rejeitar"
+          data-id="${escapeHTML(projeto.id)}"
+        >
+          Não aprovar
+        </button>
 
 
-                <button
-                    class="dashboard-btn dashboard-btn-confirm"
-                    data-action="confirmar"
-                    data-id="${escapeHTML(projeto.id)}"
-                >
-                    Confirmar projeto
-                </button>
+        <button
+          class="
+            dashboard-btn
+            dashboard-btn-confirm
+          "
+          data-action="confirmar"
+          data-id="${escapeHTML(projeto.id)}"
+        >
+          Confirmar projeto
+        </button>
 
-            </div>
+      </div>
 
-        `;
+    `;
   }
 
   if (status === STATUS.NAO_APROVADO || status === STATUS.CONFIRMADO) {
     return `
 
-            <div class="dashboard-card-actions">
+      <div class="dashboard-card-actions">
 
-                <button
-                    class="dashboard-btn dashboard-btn-back"
-                    data-action="aguardar"
-                    data-id="${escapeHTML(projeto.id)}"
-                >
-                    Voltar para análise
-                </button>
+        <button
+          class="
+            dashboard-btn
+            dashboard-btn-back
+          "
+          data-action="aguardar"
+          data-id="${escapeHTML(projeto.id)}"
+        >
+          Voltar para análise
+        </button>
 
-            </div>
+      </div>
 
-        `;
+    `;
   }
 
   return "";
@@ -331,10 +396,34 @@ function criarBotoesProjeto(projeto, status) {
 // =========================================
 
 function adicionarEventos(card) {
-  const botoes = card.querySelectorAll("[data-action]");
+  const botoesAcao = card.querySelectorAll("[data-action]");
 
-  botoes.forEach((botao) => {
-    botao.addEventListener("click", () => executarAcao(botao));
+  botoesAcao.forEach((botao) => {
+    botao.addEventListener("click", (evento) => {
+      evento.stopPropagation();
+
+      executarAcao(botao);
+    });
+  });
+
+  const botaoMenu = card.querySelector(".dashboard-card-more");
+
+  const menu = card.querySelector(".dashboard-card-dropdown");
+
+  if (!botaoMenu || !menu) return;
+
+  botaoMenu.addEventListener("click", (evento) => {
+    evento.stopPropagation();
+
+    document
+      .querySelectorAll(".dashboard-card-dropdown.aberto")
+      .forEach((outroMenu) => {
+        if (outroMenu !== menu) {
+          outroMenu.classList.remove("aberto");
+        }
+      });
+
+    menu.classList.toggle("aberto");
   });
 }
 
@@ -350,9 +439,18 @@ async function executarAcao(botao) {
   if (!projetoId) return;
 
   if (acao === "editar") {
-    const projeto = projetosAtuais.find(projeto=>projeto.id === projetoId)
-    if (!projetoId) return;
+    const projeto = projetosAtuais.find((projeto) => projeto.id === projetoId);
+
+    if (!projeto) return;
+
     editarProjeto(projeto);
+
+    return;
+  }
+
+  if (acao === "apagar") {
+    await apagarProjeto(projetoId);
+
     return;
   }
 
@@ -401,6 +499,133 @@ async function alterarStatus(projetoId, novoStatus) {
 }
 
 // =========================================
+// APAGAR PROJETO
+// =========================================
+
+async function apagarProjeto(projetoId) {
+  if (!usuarioAtual) return;
+
+  const confirmou = await abrirModalExcluir();
+
+  if (!confirmou) return;
+
+  try {
+    const projetoRef = ref(db, `projetos/${usuarioAtual.uid}/${projetoId}`);
+
+    await remove(projetoRef);
+  } catch (erro) {
+    console.error("Erro ao apagar projeto:", erro);
+
+    alert("Não foi possível apagar o projeto.");
+  }
+}
+function abrirModalExcluir() {
+  return new Promise((resolve) => {
+    const modalExistente = document.getElementById("modalExcluirProjeto");
+
+    if (modalExistente) {
+      modalExistente.remove();
+    }
+
+    const modal = document.createElement("div");
+
+    modal.id = "modalExcluirProjeto";
+
+    modal.className = "modal-excluir-overlay";
+
+    modal.innerHTML = `
+
+      <div class="modal-excluir">
+
+        <div class="modal-excluir-icon">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+
+            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L10.882 4zM2.5 2a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1z"/>
+          </svg>
+
+        </div>
+
+
+        <div class="modal-excluir-content">
+
+          <h2>
+            Excluir projeto?
+          </h2>
+
+          <p>
+            Essa ação não poderá ser desfeita.
+            O projeto será removido permanentemente.
+          </p>
+
+        </div>
+
+
+        <div class="modal-excluir-actions">
+
+          <button
+            type="button"
+            class="modal-excluir-cancelar"
+            id="cancelarExclusao"
+          >
+            Cancelar
+          </button>
+
+
+          <button
+            type="button"
+            class="modal-excluir-confirmar"
+            id="confirmarExclusao"
+          >
+            Apagar projeto
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+    document.body.appendChild(modal);
+
+    const cancelar = modal.querySelector("#cancelarExclusao");
+
+    const confirmar = modal.querySelector("#confirmarExclusao");
+
+    function fechar(resultado) {
+      modal.classList.remove("modal-excluir-visivel");
+
+      setTimeout(() => {
+        modal.remove();
+
+        resolve(resultado);
+      }, 200);
+    }
+
+    cancelar.addEventListener("click", () => fechar(false));
+
+    confirmar.addEventListener("click", () => fechar(true));
+
+    modal.addEventListener("click", (evento) => {
+      if (evento.target === modal) {
+        fechar(false);
+      }
+    });
+
+    requestAnimationFrame(() => {
+      modal.classList.add("modal-excluir-visivel");
+    });
+  });
+}
+
+// =========================================
 // TEXTO DO STATUS
 // =========================================
 
@@ -423,19 +648,19 @@ function textoStatus(status) {
 function mostrarVazio(container, mensagem) {
   container.innerHTML = `
 
-        <div class="dashboard-empty">
+    <div class="dashboard-empty">
 
-            <span>
-                ○
-            </span>
+      <span>
+        ○
+      </span>
 
-            <p>
-                ${mensagem}
-            </p>
+      <p>
+        ${mensagem}
+      </p>
 
-        </div>
+    </div>
 
-    `;
+  `;
 }
 
 // =========================================
@@ -443,6 +668,8 @@ function mostrarVazio(container, mensagem) {
 // =========================================
 
 function limparDashboard() {
+  projetosAtuais = [];
+
   Object.values(ELEMENTOS).forEach((elementoId) => {
     const container = document.getElementById(elementoId);
 
