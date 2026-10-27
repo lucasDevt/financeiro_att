@@ -14,9 +14,9 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
 
 
-// =========================================
+
 // ELEMENTOS
-// =========================================
+
 
 const telaLogin =
     document.getElementById("telaLogin");
@@ -49,9 +49,9 @@ const mensagemCadastro =
     document.getElementById("mensagemCadastro");
 
 
-// =========================================
+
 // TROCAR PARA CADASTRO
-// =========================================
+
 
 btnCriarConta.addEventListener(
     "click",
@@ -67,9 +67,9 @@ btnCriarConta.addEventListener(
 );
 
 
-// =========================================
+
 // VOLTAR PARA LOGIN
-// =========================================
+
 
 btnVoltarLogin.addEventListener(
     "click",
@@ -85,9 +85,9 @@ btnVoltarLogin.addEventListener(
 );
 
 
-// =========================================
+
 // CRIAR CONTA
-// =========================================
+
 
 formCadastro.addEventListener(
     "submit",
@@ -269,9 +269,9 @@ formCadastro.addEventListener(
 );
 
 
-// =========================================
+
 // LOGIN
-// =========================================
+
 
 formLogin.addEventListener(
     "submit",
@@ -360,9 +360,9 @@ formLogin.addEventListener(
 );
 
 
-// =========================================
+
 // ESQUECI MINHA SENHA
-// =========================================
+
 
 btnEsqueciSenha.addEventListener(
     "click",
@@ -427,9 +427,9 @@ btnEsqueciSenha.addEventListener(
 );
 
 
-// =========================================
+
 // ESTADO DE AUTENTICAÇÃO
-// =========================================
+
 
 onAuthStateChanged(
     auth,
@@ -448,9 +448,9 @@ onAuthStateChanged(
 );
 
 
-// =========================================
+
 // MENSAGENS
-// =========================================
+
 
 function mostrarErro(
     elemento,
@@ -491,9 +491,9 @@ function limparMensagens() {
 }
 
 
-// =========================================
+
 // TRADUZIR ERROS FIREBASE
-// =========================================
+
 
 function traduzirErroFirebase(
     codigo
